@@ -3,7 +3,7 @@
   "release_version": "2026.10",
   "release_tag": "v2026.10",
   "repository": "https://github.com/earino/my-pricecatcher-weekly-increase",
-  "visibility": "private (publication requires explicit authorisation)",
+  "visibility": "public",
   "artifact_version": "06c5cd6f8a74aef9d1fab048ab88f86e311385e68c0d25416b7ac5c0281a23cf",
   "package_digest": null,
   "artifact_job": "pc-build-2026-10-22",
@@ -69,7 +69,9 @@
   "baseline_command": "sh baseline/reproduce_baseline.sh ./task",
   "get_dataset_command": "python3 get_dataset.py --dest ./task",
   "source": {
-    "url": "https://data.gov.my/data-catalogue/pricecatcher",
+    "name": "PriceCatcher: transactional records (KPDN and DOSM, data.gov.my)",
+    "landing_page": "https://data.gov.my/data-catalogue/pricecatcher",
+    "api": "anonymous monthly bulk CSV/parquet at https://storage.data.gov.my/pricecatcher/pricecatcher_YYYY-MM.csv",
     "license": "CC BY 4.0",
     "licence_evidence": [
       "Measured 2026-10-21 from https://data.gov.my/data-catalogue/pricecatcher (HTML, page-embedded metadata license_text): 'This data is made open under the Creative Commons Attribution 4.0 International License (CC BY 4.0). A copy of the license is available Here'. The same statement is served by OpenDOSM's mirror (open.dosm.gov.my/data-catalogue/pricecatcher, retrieved via search 2026-10-21).",
@@ -106,7 +108,32 @@
       "sha256": "8ead984e53c126fbbb9b6fd03c42fb114233f23960222a30b84ee0b204695b48"
     }
   },
-  "splits": null,
+  "splits": {
+    "train": {
+      "rows": 397982,
+      "positives": 59449,
+      "target_from": "2023-11-06",
+      "target_to": "2024-12-23",
+      "positive_rate": 0.149376,
+      "distinct_events": 111
+    },
+    "eval": {
+      "rows": 280468,
+      "positives": 48990,
+      "target_from": "2025-01-13",
+      "target_to": "2025-12-29",
+      "positive_rate": 0.174672,
+      "distinct_events": 135
+    },
+    "holdout": {
+      "rows": 154279,
+      "positives": 31519,
+      "target_from": "2026-01-05",
+      "target_to": "2026-10-19",
+      "positive_rate": 0.204299,
+      "distinct_events": 121
+    }
+  },
   "qualification": {
     "gate_version": "1.4.0",
     "ok": true,
@@ -150,8 +177,8 @@
     }
   },
   "scope": "One baseline through the runner's training and validation contract. No agent or harness comparison was run and none is implied.",
-  "published": false,
-  "publication_note": "Prepared for human review. Nothing here has been published.",
+  "published": true,
+  "publication_note": "Published after explicit operator authorisation, both destinations verified 2026-10-22T09:46:46Z. Data files, tag and artifact version are unchanged by publication.",
   "licenses": {
     "policy_version": "2026-09-19",
     "decided": "2026-10-22",

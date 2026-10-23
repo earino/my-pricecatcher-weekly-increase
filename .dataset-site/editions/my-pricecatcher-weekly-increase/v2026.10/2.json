@@ -1,0 +1,109 @@
+{
+  "artifact_version": "06c5cd6f8a74aef9d1fab048ab88f86e311385e68c0d25416b7ac5c0281a23cf",
+  "assets": {
+    "meta.json": {
+      "bytes": 1240,
+      "download": "https://github.com/earino/my-pricecatcher-weekly-increase/releases/download/v2026.10/meta.json",
+      "hf_path": "meta.json",
+      "sha256": "81288b72d7c566b33b6ee4c56f90fa629c53df15ac58133a993f3b49e70cdb0a"
+    },
+    "private-holdout.csv": {
+      "bytes": 20235520,
+      "download": "https://github.com/earino/my-pricecatcher-weekly-increase/releases/download/v2026.10/private-holdout.csv",
+      "hf_path": "data/private-holdout.csv",
+      "sha256": "2c763488dc121da07ba43bada0d827d81e646d517c4143496be749022cc39621"
+    },
+    "public-eval.csv": {
+      "bytes": 35639435,
+      "download": "https://github.com/earino/my-pricecatcher-weekly-increase/releases/download/v2026.10/public-eval.csv",
+      "hf_path": "data/public-eval.csv",
+      "sha256": "62b71ae37f43b05b94d4d56817fd0f2a535cba00d70dd52d21993f4e46e6b834"
+    },
+    "public-train.csv": {
+      "bytes": 49509819,
+      "download": "https://github.com/earino/my-pricecatcher-weekly-increase/releases/download/v2026.10/public-train.csv",
+      "hf_path": "data/public-train.csv",
+      "sha256": "ff054994020c3fcf95c77e88d69e7fc2ac8e42ec97944e098ac9e62f3289951e"
+    },
+    "quality.json": {
+      "bytes": 6569,
+      "download": "https://github.com/earino/my-pricecatcher-weekly-increase/releases/download/v2026.10/quality.json",
+      "hf_path": "quality.json",
+      "sha256": "8ead984e53c126fbbb9b6fd03c42fb114233f23960222a30b84ee0b204695b48"
+    }
+  },
+  "baseline": {
+    "metrics": {
+      "Evaluation ROC AUC": 0.752
+    },
+    "scope": "One baseline through the runner's training and validation contract. No agent or harness comparison was run and none is implied."
+  },
+  "configs": [],
+  "dataset": "my-pricecatcher-weekly-increase",
+  "domain": "Retail prices and consumer economics",
+  "github_repository": "earino/my-pricecatcher-weekly-increase",
+  "hf_repository": "earino/my-pricecatcher-weekly-increase",
+  "licenses": {
+    "attribution": "PriceCatcher, Ministry of Domestic Trade and Cost of Living (KPDN) and Department of Statistics Malaysia (DOSM), data.gov.my, CC BY 4.0.",
+    "citation": "KPDN and DOSM. PriceCatcher. data.gov.my; 2026. Derived dataset: week-ahead retail price increase, Johor.",
+    "code": "MIT",
+    "compilation_scope": "The weekly modal aggregation, row selection, derived label, features, splits and packaging are our work and are dedicated to the public domain under CC0 1.0. The source rows remain under CC BY 4.0.",
+    "data_compilation": "CC0-1.0",
+    "source_data": "CC-BY-4.0"
+  },
+  "limitations": [
+    "Derived from PriceCatcher (KPDN and DOSM, data.gov.my) under CC BY 4.0; the compilation is CC0. Not an official Malaysian government product.",
+    "State-scoped to Johor. Other states are not represented in this release.",
+    "Pairs with fewer than three observations in a week are excluded at the prediction instant; a following week that is too sparse is counted as an unobserved outcome (143,978) rather than dropped silently.",
+    "Missing lags are sentinel-coded -1.0, which is unambiguous only because prices are strictly positive.",
+    "The holdout is labelled and ships with the release; keep its labels outside an evaluated agent's workspace.",
+    "The source feed revises monthly; a later rebuild will not reproduce these bytes."
+  ],
+  "post": {
+    "paragraphs": [
+      "Malaysia's PriceCatcher programme publishes daily retail prices for hundreds of items across thousands of premises. Access is not the contribution. The contribution is the weekly panel - 397,982 train / 280,468 eval / 154,279 holdout item-premise-weeks in the state of Johor, from November 2023 to October 2026 - and the declaration that the prediction instant is the end of week W: a forecast made on Sunday night about next week's shelf price.",
+      "The label is a direction call, not a level: will the weekly modal price be higher in week W+1 than in week W. Positive rates run 14.9% / 17.5% / 20.4%, and the rise of the rate across the windows is itself a signal about the period.",
+      "The baseline is strong enough to be interesting: the harness's XGBoost pass reaches 0.7520 eval AUC, twenty-one points above the best naive reference (an item-level prior at 0.5354, with momentum and mean-reversion near 0.50). Unlike tasks where persistence wins, this one rewards learning something about the item and the week."
+    ],
+    "title": "A week-ahead price-increase task from Malaysia's daily price panel"
+  },
+  "qualification": {
+    "gate_version": "1.4.0",
+    "result": "PASSED"
+  },
+  "record_sha256": "9fab641ce01eb7827e0d69faf9da71dc73007b703ad1e4a45f500811916bd52e",
+  "release_date": "2026-10-22",
+  "release_tag": "v2026.10",
+  "schema_version": 1,
+  "site_revision": 2,
+  "source": {
+    "name": "PriceCatcher: transactional records (KPDN and DOSM, data.gov.my)",
+    "url": "https://data.gov.my/data-catalogue/pricecatcher"
+  },
+  "splits": {
+    "eval": {
+      "positives": 48990,
+      "rows": 280468
+    },
+    "holdout": {
+      "positives": 31519,
+      "rows": 154279
+    },
+    "train": {
+      "positives": 59449,
+      "rows": 397982
+    }
+  },
+  "summary": "Predict whether an item's price at a Malaysian premise rises next week - 832,729 item-premise-weeks from the PriceCatcher daily price panel, state of Johor.",
+  "task_type": "binary-classification",
+  "title": "Malaysian retail price increases",
+  "urls": {
+    "catalog": "https://earino.github.io/dataset-factory-site/",
+    "github": "https://github.com/earino/my-pricecatcher-weekly-increase",
+    "github_release": "https://github.com/earino/my-pricecatcher-weekly-increase/releases/tag/v2026.10",
+    "huggingface": "https://huggingface.co/datasets/earino/my-pricecatcher-weekly-increase",
+    "huggingface_version": "https://huggingface.co/datasets/earino/my-pricecatcher-weekly-increase/tree/v2026.10",
+    "version": "https://earino.github.io/my-pricecatcher-weekly-increase/versions/v2026.10/",
+    "website": "https://earino.github.io/my-pricecatcher-weekly-increase/"
+  }
+}

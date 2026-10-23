@@ -33,7 +33,9 @@
     }
   },
   "baseline": {
-    "metrics": {},
+    "metrics": {
+      "Evaluation ROC AUC": 0.752
+    },
     "scope": "One baseline through the runner's training and validation contract. No agent or harness comparison was run and none is implied."
   },
   "configs": [],
@@ -69,11 +71,11 @@
     "gate_version": "1.4.0",
     "result": "PASSED"
   },
-  "record_sha256": "c931b18b0f19342113fda0b534f750aaa92ef41402fc4566cbd39d04e597790f",
+  "record_sha256": "9fab641ce01eb7827e0d69faf9da71dc73007b703ad1e4a45f500811916bd52e",
   "release_date": "2026-10-22",
   "release_tag": "v2026.10",
   "schema_version": 1,
-  "site_revision": 1,
+  "site_revision": 2,
   "source": {
     "name": "PriceCatcher: transactional records (KPDN and DOSM, data.gov.my)",
     "url": "https://data.gov.my/data-catalogue/pricecatcher"

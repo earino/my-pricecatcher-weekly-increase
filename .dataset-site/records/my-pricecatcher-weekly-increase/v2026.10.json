@@ -71,11 +71,11 @@
     "gate_version": "1.4.0",
     "result": "PASSED"
   },
-  "record_sha256": "9fab641ce01eb7827e0d69faf9da71dc73007b703ad1e4a45f500811916bd52e",
+  "record_sha256": "e1962ae4c9482673143bdef4a06b56253b9a366e42b18c2bcbf00da5ca8faf79",
   "release_date": "2026-10-22",
   "release_tag": "v2026.10",
   "schema_version": 1,
-  "site_revision": 2,
+  "site_revision": 3,
   "source": {
     "name": "PriceCatcher: transactional records (KPDN and DOSM, data.gov.my)",
     "url": "https://data.gov.my/data-catalogue/pricecatcher"

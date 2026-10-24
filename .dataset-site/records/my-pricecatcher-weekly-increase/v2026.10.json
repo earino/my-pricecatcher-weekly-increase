@@ -57,7 +57,9 @@
     "Pairs with fewer than three observations in a week are excluded at the prediction instant; a following week that is too sparse is counted as an unobserved outcome (143,978) rather than dropped silently.",
     "Missing lags are sentinel-coded -1.0, which is unambiguous only because prices are strictly positive.",
     "The holdout is labelled and ships with the release; keep its labels outside an evaluated agent's workspace.",
-    "The source feed revises monthly; a later rebuild will not reproduce these bytes."
+    "The source feed revises monthly; a later rebuild will not reproduce these bytes.",
+    "No claim of real-time or operational forecasting validity: historical feature and label availability at the prediction instant is assumed from a current source snapshot, not verified against release vintages.",
+    "The labeled eval split is development/validation. Final holdout scoring requires prediction-time access restrictions; the original scorer provided the complete feature frame. Downloadable holdout labels must stay outside model development."
   ],
   "post": {
     "paragraphs": [
@@ -71,11 +73,11 @@
     "gate_version": "1.4.0",
     "result": "PASSED"
   },
-  "record_sha256": "e1962ae4c9482673143bdef4a06b56253b9a366e42b18c2bcbf00da5ca8faf79",
+  "record_sha256": "9704abcca313c3d82e0532d4e76622b4f792035ae66c926beec0bd89a03c8cf7",
   "release_date": "2026-10-22",
   "release_tag": "v2026.10",
   "schema_version": 1,
-  "site_revision": 3,
+  "site_revision": 4,
   "source": {
     "name": "PriceCatcher: transactional records (KPDN and DOSM, data.gov.my)",
     "url": "https://data.gov.my/data-catalogue/pricecatcher"
@@ -94,7 +96,44 @@
       "rows": 397982
     }
   },
-  "summary": "Predict whether an item's price at a Malaysian premise rises next week - 832,729 item-premise-weeks from the PriceCatcher daily price panel, state of Johor.",
+  "suitability": {
+    "artifact_version": "06c5cd6f8a74aef9d1fab048ab88f86e311385e68c0d25416b7ac5c0281a23cf",
+    "corrections": [
+      "Public site page, Hub card and repository README must state the restricted suitability once rendered; no frozen package bytes change."
+    ],
+    "cross_row_audit": {
+      "scope": "Independent operator-commissioned audit; predictions frozen before labels were opened; holdouts sealed; two AUC implementations in exact agreement",
+      "status": "recovery_demonstrated"
+    },
+    "dataset": "my-pricecatcher-weekly-increase",
+    "decision": "retain_restricted",
+    "evaluation_access": "chronological",
+    "historical_availability": "assumed",
+    "limitations": [
+      "join (premise, item, T) -> (same pair, T+7 days): the next row's prices are the operands of T's label",
+      "The labelled holdout is presumed to carry the same self-answering structure by construction; it was never opened by the audit and must be treated as compromisable by the same join class.",
+      "Historical feature/label availability at the declared instant is assumed from current snapshots, not verified against release vintages.",
+      "The current scorer passes the complete feature frame to predict_proba; prediction-time isolation is instructed but not mechanically enforced, so any framework score on these files is gameable.",
+      "Observing same-day rows in one current bulk file does not verify historical weekly completeness or revision timing. Missing next-week outcomes restrict the scored population."
+    ],
+    "release_tag": "v2026.10",
+    "reviewed_on": "2026-10-24",
+    "schema_version": 1,
+    "selection": "unverified",
+    "summary": "Retained for retrospective model-development research with documented timing limitations. Later evaluation rows expose earlier outcomes; predictions require restricted access.",
+    "supported_uses": [
+      "Retrospective train/validation model-development experiments under the documented timing and selection limitations",
+      "Final evaluation only under a protocol that isolates holdout data from development and prevents later rows influencing earlier predictions"
+    ],
+    "training_label_timing": "unverified",
+    "unsupported_uses": [
+      "Claims of verified real-time or operational forecasting validity",
+      "Treating development/validation scores as untouched final-test results",
+      "Forecasting scores from unrestricted cross-row access to this artifact"
+    ],
+    "vintage": "current_snapshot"
+  },
+  "summary": "Research task: predict whether an item's price at a Malaysian premise rises next week - 832,729 item-premise-weeks from the PriceCatcher daily price panel, state of Johor.",
   "task_type": "binary-classification",
   "title": "Malaysian retail price increases",
   "urls": {
